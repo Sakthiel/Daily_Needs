@@ -7,9 +7,13 @@ const Header =() => {
     return(   
      <AppBar className= {classes.appBar}>
                 <Toolbar className={classes.toolbar}> 
+                <div>
+                    <a href = "/" className={classes.headerLink}>
                  <Typography className = {classes.headerLogo}variant = "h5">
                 Daily Needs
                 </Typography>
+                </a>
+                </div>
 
             <div>
                 <a href="/priceList" className = {classes.headerLink}>
