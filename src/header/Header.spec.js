@@ -23,7 +23,7 @@ describe("Basic rendering of header component" , () =>{
         const priceListTypographyComponent = typographyComponentList.at(1);
         const billTypographyComponent = typographyComponentList.at(2);
 
-        
+
         expect(typographyComponentList.length).toBe(3);
         expect(priceListTypographyComponent.text()).toBe("Price List");
         expect(billTypographyComponent.text()).toBe("Bill");
