@@ -1,37 +1,37 @@
-import { AppBar , Toolbar ,Typography } from "@material-ui/core";
+import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import React from "react";
 import styles from "./styles/headerStyles"
-const Header =() => {
+const Header = () => {
 
     const classes = styles();
-    return(   
-     <AppBar className= {classes.appBar}>
-                <Toolbar className={classes.toolbar}> 
+    return (
+        <AppBar position = {"sticky"} className={classes.appBar}>
+            <Toolbar className={classes.toolbar}>
                 <div>
-                    <a href = "/" className={classes.headerLink}>
-                 <Typography className = {classes.headerLogo}variant = "h5">
-                Daily Needs
-                </Typography>
-                </a>
+                    <a href="/" className={classes.headerLink}>
+                        <Typography className={classes.headerLogo} variant="h5">
+                            Daily Needs
+                        </Typography>
+                    </a>
                 </div>
 
-            <div>
-                <a href="/priceList" className = {classes.headerLink}>
-                    <Typography >
-                    Price List
-                    </Typography>
-                </a>
-            </div>
-            <div>
-                <a href = "/bill" className = {classes.headerLink}>
-                <Typography className = {classes.headerLogo}>
-                    Bill
-                </Typography>
-                </a>
-            </div>
-        </Toolbar>
-    </AppBar>)
-    ;
+                <div>
+                    <a href="/priceList" className={classes.headerLink}>
+                        <Typography >
+                            Price List
+                        </Typography>
+                    </a>
+                </div>
+                <div>
+                    <a href="/bill" className={classes.headerLink}>
+                        <Typography className={classes.headerLogo}>
+                            Bill
+                        </Typography>
+                    </a>
+                </div>
+            </Toolbar>
+        </AppBar>)
+        ;
 
 }
 export default Header;

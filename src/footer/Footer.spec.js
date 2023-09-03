@@ -1,11 +1,8 @@
 import React from "react";
-import { fireEvent, render ,waitFor} from "@testing-library/react";
+import { render ,waitFor} from "@testing-library/react";
 import Footer from "./Footer";
-import shadows from "@material-ui/core/styles/shadows";
-import { shallow } from "enzyme";
 import {getVersionDetails} from "./service/footerService";
 import { when } from "jest-when";
-import { act } from 'react-dom/test-utils';
 
 jest.mock("./service/footerService", () => ({
     getVersionDetails : jest.fn(),

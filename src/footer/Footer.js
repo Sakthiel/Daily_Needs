@@ -6,10 +6,6 @@ const Footer  = () =>{
     const classes = styles();
     const[versionDetails , setVersionDetails] = useState('');
 
-    // useEffect(() => {
-    //  axios.get('http://localhost:8080/version').then(res => console.log(res)).catch(err => console.log(err));
-    // }, []);
-
     useEffect(() => {
         async function fetchData() {
           try {
