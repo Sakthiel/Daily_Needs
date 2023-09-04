@@ -1,6 +1,5 @@
 import {useEffect, useState} from "react";
 import {isLoggedIn, login, logout, getUserName} from "../../helper/authService";
-import { redirect } from "react-router-dom";
 
 export default () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);

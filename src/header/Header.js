@@ -1,6 +1,5 @@
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { Link } from "react-router-dom";
 import React from "react";
 import styles from "./styles/headerStyles"
 const Header = ({onLogout , isAuthenticated}) => {
