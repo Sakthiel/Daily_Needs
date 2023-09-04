@@ -1,7 +1,9 @@
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { Link } from "react-router-dom";
 import React from "react";
 import styles from "./styles/headerStyles"
-const Header = () => {
+const Header = ({onLogout , isAuthenticated}) => {
 
     const classes = styles();
     return (
@@ -12,7 +14,7 @@ const Header = () => {
                         <Typography className={classes.headerLogo} variant="h5">
                             Daily Needs
                         </Typography>
-                    </a>
+                    </a> 
                 </div>
 
                 <div>
@@ -29,6 +31,14 @@ const Header = () => {
                         </Typography>
                     </a>
                 </div>
+                { isAuthenticated ? 
+                <div onClick={onLogout} className={`${classes.logoutLink} logout-link`}>
+                    <ExitToAppIcon/>
+                    <Typography className={classes.headerLogo} variant="body1">
+                        Logout
+                    </Typography>
+                </div> : " "
+}
             </Toolbar>
         </AppBar>)
         ;

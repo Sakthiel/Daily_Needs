@@ -18,6 +18,13 @@ export default makeStyles((theme) => ({
     },
     headerLogo: {
         marginLeft: '0.15em'
+    },
+    logoutLink: {
+        display: 'flex',
+        justifyContent: "space-between",
+        alignItems: "center",
+        cursor: "pointer",
+        marginLeft: "15px"
     }
 })
 );
