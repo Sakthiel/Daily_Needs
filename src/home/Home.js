@@ -1,7 +1,8 @@
-import { redirect } from "react-router-dom";
+import { useEffect } from "react";
+
 
 const Home = () => {
-   
+
     return(
             <h1>
                 Home Page

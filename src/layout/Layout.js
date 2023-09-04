@@ -7,7 +7,7 @@ import useAuth from "./hooks/useAuth";
 
 const Layout = () => {
     const classes = styles();
-    const {isAuthenticated, handleLogin, handleLogout, userName ,checkAuthLoader} = useAuth();
+    const {isAuthenticated, handleLogin, handleLogout} = useAuth();
     console.log(isAuthenticated);
 
     return (

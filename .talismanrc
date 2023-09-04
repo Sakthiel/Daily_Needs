@@ -15,3 +15,18 @@ fileignoreconfig:
 - filename: yarn.lock
   checksum: 8eac012795b71408094b11885578f9dc95aec700596a1db5866046ceade25432
 version: ""
+fileignoreconfig:
+- filename: yarn.lock
+  checksum: a559b3ca4f2e4af046ed93e96cc87ee233bdea9186b9fe97fcdbc6171f891244
+- filename: src/helper/authService.js
+  checksum: f56dbd5abec5234e18f4939fbafcf4470a0fae6c04491f3acf7f091bcaadc090
+- filename: src/login/Login.js
+  checksum: de23acdd069db894b70b0ffe3c5c6300828fe301961e845f2c6a03cd3c90dbd2
+- filename: src/layout/hooks/useAuth.spec.js
+  checksum: 6996ea79f6cfc3faf6d86031f4995bff3139c6cc4177ca913f88ae93d8ca765a
+version: ""
+
+fileignoreconfig:
+- filename: src/priceList/PriceList.js
+  checksum: c64704a9fff58bd6534449fcac4f4da3d8b79eade74edb125ce507ea9e767f85
+version: ""

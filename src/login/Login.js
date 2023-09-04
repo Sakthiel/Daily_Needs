@@ -1,6 +1,5 @@
-import { FormControl , FormLabel , TextField , Button ,Typography} from "@material-ui/core";
-import { useState , useEffect} from "react";
-import { Navigate } from "react-router-dom";
+import { FormLabel , TextField , Button ,Typography} from "@material-ui/core";
+import { useState} from "react";
 import { useNavigate } from "react-router-dom";
 const Login = ({ isAuthenticated, onLogin }) => {
     const navigate = useNavigate();
