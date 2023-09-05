@@ -24,7 +24,7 @@ describe("Basic logic", () => {
     it("should login successfuly", async () => {
         const testUsername = "testUsername";
         const testPassword = "testPassword";
-        isLoggedIn.mockReturnValue(true);
+        isLoggedIn.mockReturnValue(false);
         const renderHookResult = renderHook(() => useAuth());
         const {result} = renderHookResult;
         when(login).calledWith(testUsername, testPassword).mockResolvedValue("userDetails");
@@ -37,7 +37,6 @@ describe("Basic logic", () => {
         });
 
         const {isAuthenticated} = result.current;
-        // noinspection JSUnusedAssignment
         expect(userDetails).toBe("userDetails");
         expect(isAuthenticated).toBe(true);
     });

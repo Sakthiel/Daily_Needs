@@ -8,6 +8,8 @@ const Login = ({ isAuthenticated, onLogin }) => {
     const [username , setUserName] = useState('');
     const [password , setPassWord] = useState('');
 
+    const[isPasswordValid , setPasswordValid] = useState(false);
+
     const[isLoggedIn , setIsLoggedIn] = useState(isAuthenticated);
 
 
@@ -21,8 +23,25 @@ const Login = ({ isAuthenticated, onLogin }) => {
         }
     };
 
+    const handlePasswordChange = (e) => {
+        let typedPassword = e.target.value;
+        
+        setPasswordValid(checkPasswordValidity(typedPassword));
+        setPassWord(e.target.value);
+        
+    }
 
-    const handleLogin = async (e) => {
+    const handleUserName = (e) => {
+        setUserName(e.target.value);
+    }
+
+    const checkPasswordValidity = (typedPassword) => {
+        const dbPassword = 'Owner'; // Replace with your actual database password
+        return typedPassword === dbPassword;
+     };
+
+
+     const handleLogin = async (e) => {
         e.preventDefault();
         console.log(isAuthenticated);
         
@@ -37,7 +56,7 @@ const Login = ({ isAuthenticated, onLogin }) => {
             }
         }
         console.log(isAuthenticated);
-        navigate("/")
+        navigate("/");
         setIsLoggedIn(true);
     };
     // if (isLoggedIn) {
@@ -54,7 +73,7 @@ return(<div style={{textAlign:"center"}}>
         </FormLabel>
         </div>
       
-        <TextField type="text" required onChange = {(e) => {setUserName(e.target.value)}}>
+        <TextField data-testid = "username-input" variant="outlined" type="text" required margin="dense" onChange = {handleUserName}>
 
         </TextField>
         <div> 
@@ -63,11 +82,11 @@ return(<div style={{textAlign:"center"}}>
         </FormLabel>
         </div>
       
-        <TextField type = "password" required onChange={(e) => {setPassWord(e.target.value)}}>
+        <TextField data-testid = "password-input" variant="outlined"  sx={{mb: 3}} margin="dense" type = "password" required onChange = {handlePasswordChange}>
 
         </TextField>
         <div style={{margin:"5px"}}> 
-        <Button color="primary" variant="contained" type = "submit" >
+        <Button color="primary" variant="contained" type = "submit"  disabled = {!isPasswordValid}>
             Submit
         </Button>
         </div>

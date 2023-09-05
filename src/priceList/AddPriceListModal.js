@@ -3,8 +3,6 @@ import { useState } from "react";
 import styles from "./styles/addPriceListModalStyles";
 import priceListService from "./service/priceListService";
 const AddPriceListModal = ({open , handleClose , editModal , itemId , initialData}) => {
-
-    
     
         const[productName , setProductName] = useState('');
     const[category , setCategory] = useState('');
@@ -30,25 +28,25 @@ const AddPriceListModal = ({open , handleClose , editModal , itemId , initialDat
     }
 
     return(<Modal open = {open} onClose={handleClose}>
-        <div className= {classes.scheduleModal}>
-            <div className= {classes.scheduleHeader}>
+        <div className= {classes.addListModal}>
+            <div className= {classes.addListHeader}>
                 <Typography variant="h5" component= "h2" id = "simple-modal-title">
                     {editModal ? "Edit Price List" :"Add a New Price List"}
                 </Typography>
             </div>
-            <form onSubmit = {handleSubmit}>
+            <form onSubmit = {handleSubmit} data-testid = "form">
                 <FormLabel>
                     Product Name
                 </FormLabel>
-                <TextField required fullWidth onChange = {(e) => {setProductName(e.target.value)}} ></TextField>
+                <TextField data-testid = "productname-input" required fullWidth onChange = {(e) => {setProductName(e.target.value)}}  ></TextField>
                 <FormLabel>
                     Category
                 </FormLabel>
-                <TextField  required fullWidth onChange = {(e) => {setCategory(e.target.value)}} ></TextField>
+                <TextField  data-testid = "category-input" required fullWidth onChange = {(e) => {setCategory(e.target.value)}} ></TextField>
                 <FormLabel>
                     Price
                 </FormLabel>
-                <TextField  required fullWidth type = "number" onChange = {(e) => {setPrice(e.target.value)} }></TextField>
+                <TextField  data-testid = "price-input" required fullWidth type = "number" onChange = {(e) => {setPrice(e.target.value)} }></TextField>
                 <Button color = "primary" variant = "contained" type = "submit">
                     Submit
                 </Button>
