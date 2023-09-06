@@ -30,3 +30,11 @@ fileignoreconfig:
 - filename: src/priceList/PriceList.js
   checksum: c64704a9fff58bd6534449fcac4f4da3d8b79eade74edb125ce507ea9e767f85
 version: ""
+fileignoreconfig:
+- filename: src/login/Login.js
+  checksum: 632e2fe762e9cc16809198376f81be0f5d920485f8731d26a22f9af0a50b7c9a
+- filename: src/login/Login.spec.js
+  checksum: cc21c877c45fef35d7b41ffb7ca1e380da8516d058460b5d475e40eacc7dfeac
+- filename: src/priceList/PriceList.js
+  checksum: 1449d776f545c8336b4601b4871b0f7c5026432cfc429ad827ee0e283a951027
+version: ""

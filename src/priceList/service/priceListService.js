@@ -12,8 +12,10 @@ export default {
     },
     deletePriceList: async(id) => {
         const response = await apiService.delete(`products/${id}`);
+        return response;
     } ,
     editPriceList: async(payload ,id) => {
         const response = await apiService.put(`products/${id}` , payload);
+        return response;
     }
 }

@@ -10,8 +10,6 @@ const Login = ({ isAuthenticated, onLogin }) => {
 
     const[isPasswordValid , setPasswordValid] = useState(false);
 
-    const[isLoggedIn , setIsLoggedIn] = useState(isAuthenticated);
-
 
     const errorMessage = () => {
         if (showError) {
@@ -57,7 +55,6 @@ const Login = ({ isAuthenticated, onLogin }) => {
         }
         console.log(isAuthenticated);
         navigate("/");
-        setIsLoggedIn(true);
     };
     // if (isLoggedIn) {
     //     return <Navigate to="/"  />;

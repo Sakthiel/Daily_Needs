@@ -35,7 +35,6 @@ export const authHeader = () => {
 
   export const logout = () => {
     localStorage.removeItem(tokenKey);
-    localStorage.removeItem("role");
   };
   
   const authBasic = (username, password) => {

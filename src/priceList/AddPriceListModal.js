@@ -1,60 +1,71 @@
-import {Modal , Typography , FormLabel ,  Button ,TextField } from "@material-ui/core"
+import { Modal, Typography, FormLabel, Button, TextField } from "@material-ui/core"
 import { useState } from "react";
 import styles from "./styles/addPriceListModalStyles";
 import priceListService from "./service/priceListService";
-const AddPriceListModal = ({open , handleClose , editModal , itemId , initialData}) => {
-    
-        const[productName , setProductName] = useState('');
-    const[category , setCategory] = useState('');
-    const[price , setPrice] = useState('0');
-    
-    const classes =  styles();
+const AddPriceListModal = ({ open, handleClose, editModal, itemId, priceList, setPriceList, index }) => {
 
-    const handleSubmit = async(e) => {
+    const [productName, setProductName] = useState('');
+    const [category, setCategory] = useState('');
+    const [price, setPrice] = useState('0');
+
+    const classes = styles();
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const payload = {productName , category , unitPrice  : parseFloat(price)}
+        const payload = { productName, category, unitPrice: parseFloat(price) }
         console.log(payload);
-        if(!editModal){
-        await priceListService.createPriceList(payload);
-        console.log("create")
+        if (!editModal) {
+            await priceListService.createPriceList(payload);
+            console.log("create")
+            handleClose();
+            window.location.reload();
         }
-        else{
-            await priceListService.editPriceList(payload , itemId);
-            console.log("edit");
-            editModal = false;
+        else {
+            try {
+                const response = await priceListService.editPriceList(payload, itemId);
+                console.log("edit");
+                console.log(response.data);
+                priceList.splice(index, 1, response.data);
+                const updatedPriceList = priceList;
+                setPriceList(updatedPriceList);
+                editModal = false;
+                handleClose();
+            }
+            catch (error) {
+                console.error(error);
+            }
         }
-        handleClose();
-        window.location.reload();
+
     }
 
-    return(<Modal open = {open} onClose={handleClose}>
-        <div className= {classes.addListModal}>
-            <div className= {classes.addListHeader}>
-                <Typography variant="h5" component= "h2" id = "simple-modal-title">
-                    {editModal ? "Edit Price List" :"Add a New Price List"}
+    return (<Modal open={open} onClose={handleClose}>
+        <div className={classes.addListModal}>
+            <div className={classes.addListHeader}>
+                <Typography variant="h5" component="h2" id="simple-modal-title">
+                    {editModal ? "Edit Price List" : "Add a New Price List"}
                 </Typography>
             </div>
-            <form onSubmit = {handleSubmit} data-testid = "form">
+            <form onSubmit={handleSubmit} data-testid="form">
                 <FormLabel>
                     Product Name
                 </FormLabel>
-                <TextField data-testid = "productname-input" required fullWidth onChange = {(e) => {setProductName(e.target.value)}}  ></TextField>
+                <TextField data-testid="productname-input" required fullWidth    onChange={(e) => { setProductName(e.target.value) }}  ></TextField>
                 <FormLabel>
                     Category
                 </FormLabel>
-                <TextField  data-testid = "category-input" required fullWidth onChange = {(e) => {setCategory(e.target.value)}} ></TextField>
+                <TextField data-testid="category-input" required fullWidth  onChange={(e) => { setCategory(e.target.value) }} ></TextField>
                 <FormLabel>
                     Price
                 </FormLabel>
-                <TextField  data-testid = "price-input" required fullWidth type = "number" onChange = {(e) => {setPrice(e.target.value)} }></TextField>
-                <Button color = "primary" variant = "contained" type = "submit">
+                <TextField data-testid="price-input" required fullWidth type="number"  onChange={(e) => { setPrice(e.target.value) }}></TextField>
+                <Button color="primary" variant="contained" type="submit">
                     Submit
                 </Button>
             </form>
         </div>
 
     </Modal>
-   )
+    )
 
 }
 export default AddPriceListModal;

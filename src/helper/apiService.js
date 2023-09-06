@@ -24,5 +24,8 @@ export default {
     },
     put : async(path, payload) => {
         return promiseWithErrorHandling(axios.put(`http://localhost:8080/${path}`, payload, authHeader()));
+    },
+    getWithoutAuth: async (path) => {
+        return promiseWithErrorHandling(axios.get(`http://localhost:8080/${path}`));
     }
 }
