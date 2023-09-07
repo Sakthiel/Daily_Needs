@@ -141,7 +141,7 @@ const PriceList = ({setCartItemCount}) => {
                             <TableRow>
                                 {
                                     tableHeader.map((header, index) => {
-                                        return (<TableCell key={index} className={classes.tableHeader} style={{ width: '30px' }}>
+                                        return (<TableCell align="center" key={index} className={classes.tableHeader} style={{ width: '30px' }}>
                                             {header}
                                         </TableCell>)
                                     })
@@ -153,19 +153,19 @@ const PriceList = ({setCartItemCount}) => {
                                 priceList.length > 0 ? priceList.map((item, index) => {
                                     return (
                                         <TableRow key={item.id}>
-                                            <TableCell style={{ width: '20%' }} component="th" scope="row">
+                                            <TableCell align="center" style={{ width: '20%' }} component="th" scope="row">
                                                 {item.productName}
                                             </TableCell>
-                                            <TableCell style={{ width: '15%' }} >
+                                            <TableCell align="center" style={{ width: '15%' }} >
                                                 {item.category}
                                             </TableCell>
-                                            <TableCell style={{ width: '10%' }}>
+                                            <TableCell align="center" style={{ width: '10%' }}>
                                                 {item.unitPrice}
                                             </TableCell>
-                                            <TableCell style={{ width: '12%' }}>
+                                            <TableCell align="center" style={{ width: '12%' }}>
                                                 <TextField variant="outlined" type="number" required onChange={(e) => { handleQuantityChange(item.id, e)}}/>
                                             </TableCell>
-                                            <TableCell>
+                                            <TableCell align="center">
                                                 <Button color="primary" variant="contained" onClick={() => {
                                                     setDeleteModelOpen(!deleteModelOpen);
                                                     setIndex(index)

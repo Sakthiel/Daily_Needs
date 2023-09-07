@@ -56,9 +56,9 @@ describe("Basic Rendering of EditPricelistModal" ,() => {
         const priceInput = component.getByTestId('price-input').querySelector('input');
         const Submit = component.getByText('Submit');
         
-        // fireEvent.change(productNameInput, { target: { value: 'Apple' } });
-        // fireEvent.change(categoryInput, { target: { value: 'Fruit' } });
-        // fireEvent.change(priceInput, { target: { value: '100' } });
+        fireEvent.change(productNameInput, { target: { value: 'Apple' } });
+        fireEvent.change(categoryInput, { target: { value: 'Fruit' } });
+        fireEvent.change(priceInput, { target: { value: '100' } });
         // fireEvent.click(Submit);
 
         // expect(screen.getByText('100')).toBeInTheDocument();

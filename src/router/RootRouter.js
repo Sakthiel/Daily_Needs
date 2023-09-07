@@ -9,7 +9,7 @@ const RootRouter = ({isAuthenticated, onLogin , setCartItemCount ,cartItemCount}
     return(
         <Router>
             <Routes>
-            <Route path="/" exact  element = {<ProtectedRoute isAuthenticated={isAuthenticated}> <Home ></Home></ProtectedRoute>}  />
+            <Route path="/" exact  element = {<ProtectedRoute isAuthenticated={isAuthenticated}> <Home setCartItemCount = {setCartItemCount} ></Home></ProtectedRoute>}  />
             
             
             

@@ -50,3 +50,7 @@ fileignoreconfig:
 - filename: src/cart/Cart.js
   checksum: 971453fe85edfcd9a075ba5c9b45842d0644f6414ee373a6ce55cd38db292e34
 version: ""
+fileignoreconfig:
+- filename: src/bill/Bill.js
+  checksum: 50ae3590360e213145a8a1e05e0f80ef70fd6fdc34c69095867136d53dba78b3
+version: ""

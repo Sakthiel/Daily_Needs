@@ -8,7 +8,7 @@ import { getUserName } from "../helper/authService";
 const Cart = ({setCartItemCount}) => {
     const classes = styles();
     const [cartItems, setCartItems] = useState([]);
-    const cartHeader = ["ProductName" , "Category" ,"Price" , "Quantity" , "Actions"];
+    const cartHeader = ["ProductName" , "Category" ,"UnitPrice" , "Quantity" , "Actions"];
 
     const [deleteModelOpen ,setDeleteModelOpen] = useState();
     const [deleteIndex, setDeleteIndex] = useState(null);
@@ -116,7 +116,7 @@ const Cart = ({setCartItemCount}) => {
         <div>
         <DeleteCartItemModal open={deleteModelOpen} handleClose={handleDeleteModalClose} index={deleteIndex} handleDelete={handleDelete} />
             <TableContainer>
-                <Table aria-label = "simple table">
+                <Table aria-label = "simple table" data-testid = "table">
                     <TableHead>
                         <TableRow>
                             {
@@ -144,8 +144,8 @@ const Cart = ({setCartItemCount}) => {
                                             <IconButton  onClick={() => {handleIncrement(index)}}> 
                                                 <AddCircle/>
                                            </IconButton > 
-                                            <span> {item.quantity}</span>
-                                            <IconButton  onClick={() => {handleDecrement(index)}}>
+                                            <span data-testid = "quantity"> {item.quantity}</span>
+                                            <IconButton  data-testid = "minusButton" onClick={() => {handleDecrement(index)}}>
                                                <RemoveCircle/>
                                            </IconButton> 
                                             {/* <TextField style={{ width: '25%' }} inputProps={{ min: '1' }} value = {item.quantity} onChange = {(e , index) => {handleQuantityChange(e ,index)}} variant="outlined" type="number" required ></TextField> */}
