@@ -5,17 +5,21 @@ import AddPriceListModal from "./AddPriceListModal";
 import EditPriceListModal from "./EditPriceListModal";
 import DeletePriceListModal from "./DeletePriceListModal";
 import styles from "./styles/priceListStyles";
+import { getUserName } from "../helper/authService";
+import cartService from "../cart/service/cartService";
 
 
-const PriceList = () => {
+const PriceList = ({setCartItemCount}) => {
     const classes = styles();
     const [priceList, setPriceList] = useState([]);
 
-    const [quanityList , setQuanityList] = useState([]);
+    const [quantityList , setQuantityList] = useState([]);
 
     const tableHeader = ["ProductName", "Category", "UnitPrice", "Quantity", "Actions"];
 
     const [selectedCategory, setSelectedCategory] = useState('All');
+
+    var currentItemCount;
 
     const handleCategoryChange = (e) => {
         setSelectedCategory(e.target.value);
@@ -53,11 +57,16 @@ const PriceList = () => {
                 const data = priceListResponse.data;
                 if (selectedCategory === 'All') {
                     setPriceList(data);
+                    setQuantityList(data);
                 }
                 else {
                     const filteredData = data.filter(item => item.category === selectedCategory);
                     setPriceList(filteredData);
+                    setQuantityList(filteredData);
                 }
+                const cartItemList= await cartService.getCartItems();
+                currentItemCount = cartItemList.data.length;
+                setCartItemCount(currentItemCount);
             } catch (error) {
                 console.error("Error fetching version details:", error);
             }
@@ -80,6 +89,40 @@ const PriceList = () => {
             console.error(error);
         }
     }
+        ///Quantity change handler
+    const handleQuantityChange = (productId , event) => {
+            const updatedQuantityList = quantityList.map((item) => {
+                if(item.id == productId)
+                    return {...item , quantity : parseInt(event.target.value)}
+                else
+                    return item;
+            });
+            setQuantityList(updatedQuantityList);
+    }
+
+        ///Add to Cart handler
+    const handleAddToCart = async (index) => {
+        const productWithQuantity = quantityList[index];
+        if(!isNaN(productWithQuantity.quantity)){
+            const userName = getUserName();
+            const payload = {productId : productWithQuantity.id,
+                            userName : userName,
+                            quantity : parseInt(productWithQuantity.quantity)}
+        try{
+            const response = await cartService.putCartItem(payload);
+           
+            console.log(response.data);
+            
+        }
+        catch(error){
+            console.error(error);
+        }
+        const cartItemList= await cartService.getCartItems();
+        currentItemCount = cartItemList.data.length;
+        setCartItemCount(currentItemCount);
+        }
+    }
+
     return (
         <div>
             <h1>
@@ -119,21 +162,21 @@ const PriceList = () => {
                                             <TableCell style={{ width: '10%' }}>
                                                 {item.unitPrice}
                                             </TableCell>
-                                            <TableCell style={{ width: '15%' }}>
-                                                <TextField variant="outlined" type="number"/>
+                                            <TableCell style={{ width: '12%' }}>
+                                                <TextField variant="outlined" type="number" required onChange={(e) => { handleQuantityChange(item.id, e)}}/>
                                             </TableCell>
                                             <TableCell>
                                                 <Button color="primary" variant="contained" onClick={() => {
                                                     setDeleteModelOpen(!deleteModelOpen);
                                                     setIndex(index)
                                                 }} className={classes.actionButton}> Delete </Button>
-                                                <Button color="primary" variant="contained" onClick={() => {
+                                                <Button data-testid = "editbutton" color="primary" variant="contained" onClick={() => {
                                                     setInitialData(item);
                                                     setId(item.id);
                                                     setEditModalOpen(!editModalOpen);
                                                     setIndex(index);
                                                 }} > Edit</Button>
-                                                <Button variant="contained" color="primary">
+                                                <Button className={classes.actionButton} variant="contained" color="primary" onClick = {(e) => {handleAddToCart(index) }}>
                                                     Add to cart
                                                 </Button>
                                             </TableCell>
