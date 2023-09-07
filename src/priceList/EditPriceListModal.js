@@ -36,15 +36,15 @@ const EditPriceListModal = ({open , handleClose, itemId, initialData, priceList,
                 <FormLabel>
                     Product Name
                 </FormLabel>
-                <TextField required fullWidth value = {productName} onChange = {(e) => {setProductName(e.target.value)}}></TextField>
+                <TextField required data-testid = "productname-input" fullWidth value = {productName} onChange = {(e) => {setProductName(e.target.value)}}></TextField>
                 <FormLabel>
                     Category
                 </FormLabel>
-                <TextField  required fullWidth value = {category} onChange = {(e) => {setCategory(e.target.value)}}></TextField>
+                <TextField  required data-testid = "category-input" fullWidth value = {category} onChange = {(e) => {setCategory(e.target.value)}}></TextField>
                 <FormLabel>
                     Price
                 </FormLabel>
-                <TextField  required fullWidth type = "number" value = {price} onChange = {(e) => {setPrice(e.target.value)}}></TextField>
+                <TextField  required data-testid = "price-input" fullWidth type = "number" value = {price} onChange = {(e) => {setPrice(e.target.value)}}></TextField>
                 <Button color = "primary" variant = "contained" type = "submit">
                     Submit
                 </Button>
