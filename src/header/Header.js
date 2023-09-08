@@ -3,7 +3,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { ShoppingCart } from "@material-ui/icons";
 import React from "react";
 import styles from "./styles/headerStyles"
-const Header = ({ onLogout, isAuthenticated ,cartItemCount}) => {
+const Header = ({ onLogout, isAuthenticated ,cartItemCount ,setCartItemCount}) => {
 
     const classes = styles();
     return (
@@ -43,7 +43,7 @@ const Header = ({ onLogout, isAuthenticated ,cartItemCount}) => {
                   
                 </div>
                 {isAuthenticated ?
-                    <div onClick={onLogout} className={`${classes.logoutLink} logout-link`}>
+                    <div onClick={() => { setCartItemCount(0) ; onLogout()}} className={`${classes.logoutLink} logout-link`}>
                         <ExitToAppIcon />
                         <Typography className={classes.headerLogo} variant="body1">
                             Logout

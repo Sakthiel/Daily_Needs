@@ -11,28 +11,35 @@ jest.mock("./service/priceListService", () => ({
 }));
 
 describe("Price List Page Basic Rendering" ,() => {
-    
+    const isUserAdmin = jest.fn();
     it("Should display pricelist text" , async() => {
-            render(<PriceList/>);
+
+            when(isUserAdmin).calledWith().mockResolvedValue(true);
+            render(<PriceList isUserAdmin={isUserAdmin}/>);
 
             expect(screen.getByText("PriceList")).toBeInTheDocument();
     });
 
     it("should render a table", () => {
-        render(<PriceList/>);
+        when(isUserAdmin).calledWith().mockResolvedValue(true);
+        render(<PriceList isUserAdmin={isUserAdmin}/>);
 
         expect(screen.getByTestId("table")).toBeInTheDocument();
     });
 
     it("should have a add button " ,() => {
-        const priceList = shallow(<PriceList/>);
-        const buttonComponent = priceList.find(Button).at(0);
-        expect(buttonComponent.text()).toBe("Add New List");
+        when(isUserAdmin).calledWith().mockResolvedValue(true);
+      
+        render(<PriceList isUserAdmin={isUserAdmin}/>);
+      
+        expect(screen.getByText("Add New List")).toBeInTheDocument();
        
     });
 
     it("should render the column headers" , async() => {
-        render(<PriceList/>);
+        when(isUserAdmin).calledWith().mockResolvedValue(true);
+        render(<PriceList isUserAdmin={isUserAdmin}/>);
+        
         expect(screen.getByText('ProductName')).toBeInTheDocument();
         const category = screen.getAllByText('Category').at(0);
         expect(category).toBeInTheDocument();
@@ -42,8 +49,9 @@ describe("Price List Page Basic Rendering" ,() => {
 
     it("should render the price details" , async() => {
         when(getPriceDetails).calledWith().mockReturnValue({data : [{id : 1 , productName : "Apple" , category : "Fruit" , unitPrice : 200}]});
+        when(isUserAdmin).calledWith().mockResolvedValue(true);
 
-        const priceList = render(<PriceList/>);
+        render(<PriceList isUserAdmin={isUserAdmin}/>);
 
         await waitFor(() => {
             expect(screen.getByText("Apple")).toBeInTheDocument();
@@ -55,7 +63,8 @@ describe("Price List Page Basic Rendering" ,() => {
     });
 
     it('renders the select component', () => {
-    render(<PriceList/>);
+        when(isUserAdmin).calledWith().mockResolvedValue(true);
+        render(<PriceList isUserAdmin={isUserAdmin}/>);
     
     // Check that the component renders without errors
     const selectElement =  screen.getByTestId('category-select');

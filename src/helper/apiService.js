@@ -27,5 +27,8 @@ export default {
     },
     getWithoutAuth: async (path) => {
         return promiseWithErrorHandling(axios.get(`http://localhost:8080/${path}`));
+    },
+    postWithoutAuth: async (path,payload) => {
+        return promiseWithErrorHandling(axios.post(`http://localhost:8080/${path}`,payload));
     }
 }

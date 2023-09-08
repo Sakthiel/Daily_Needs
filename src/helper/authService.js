@@ -25,6 +25,9 @@ export const authHeader = () => {
     if(userDetails!== null){
     localStorage.setItem(tokenKey, token);
     }
+    if (userDetails !== null && userDetails instanceof Object) {
+      localStorage.setItem("role", userDetails.role);
+    }
     return userDetails;
   };
 
@@ -35,6 +38,11 @@ export const authHeader = () => {
 
   export const logout = () => {
     localStorage.removeItem(tokenKey);
+    localStorage.removeItem("role");
+  };
+
+  export const isUserAdmin = () => {
+    return localStorage.getItem("role") == "ROLE_ADMIN";
   };
   
   const authBasic = (username, password) => {

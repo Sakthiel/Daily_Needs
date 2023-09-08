@@ -48,7 +48,7 @@ const Bill = ({ setCartItemCount }) => {
             <div>
                 <Box p={3}>
                     <TableContainer component={Paper} >
-                        <Table>
+                        <Table data-testid = "table"> 
                             <TableHead>
                                 <TableRow>
                                     <TableCell className={classes.tableHeader} >Product Name</TableCell>
@@ -62,7 +62,7 @@ const Bill = ({ setCartItemCount }) => {
                                 {cartItems.map((item) => (
                                     <TableRow key={item.id}>
                                         <TableCell>{item.product.productName}</TableCell>
-                                        <TableCell align="right">Rs {item.product.unitPrice.toFixed(2)}</TableCell>
+                                        <TableCell data-testid = "unitPrice" align="right">Rs {item.product.unitPrice.toFixed(2)}</TableCell>
                                         <TableCell align="right">{item.quantity}</TableCell>
                                         <TableCell align="right">{item.product.category}</TableCell>
                                         <TableCell align="right">Rs {(item.product.unitPrice * item.quantity).toFixed(2)}</TableCell>

@@ -9,7 +9,8 @@ import { getUserName } from "../helper/authService";
 import cartService from "../cart/service/cartService";
 
 
-const PriceList = ({setCartItemCount}) => {
+
+const PriceList = ({setCartItemCount , isUserAdmin}) => {
     const classes = styles();
     const [priceList, setPriceList] = useState([]);
 
@@ -129,8 +130,9 @@ const PriceList = ({setCartItemCount}) => {
                 PriceList
             </h1>
             <div className={classes.container} >
-
+                
                 <AddPriceListModal open={open} handleClose={handleClose} editModal={editModal} itemId={id} initialData={initialData} priceList={priceList} setPriceList={setPriceList} index={index} />
+            
                 <DeletePriceListModal open={deleteModelOpen} handleClose={handleDeleteModalClose} handleDelete={handleDelete} index={index} />
                 {initialData && (
                     <EditPriceListModal open={editModalOpen} handleClose={handleEditModalClose} itemId={id} initialData={initialData} priceList={priceList} setPriceList={setPriceList} index={index} />
@@ -166,6 +168,8 @@ const PriceList = ({setCartItemCount}) => {
                                                 <TextField variant="outlined" type="number" required onChange={(e) => { handleQuantityChange(item.id, e)}}/>
                                             </TableCell>
                                             <TableCell align="center">
+                                                {isUserAdmin() &&
+                                                <>
                                                 <Button color="primary" variant="contained" onClick={() => {
                                                     setDeleteModelOpen(!deleteModelOpen);
                                                     setIndex(index)
@@ -175,7 +179,7 @@ const PriceList = ({setCartItemCount}) => {
                                                     setId(item.id);
                                                     setEditModalOpen(!editModalOpen);
                                                     setIndex(index);
-                                                }} > Edit</Button>
+                                                }} > Edit</Button> </>}
                                                 <Button className={classes.actionButton} variant="contained" color="primary" onClick = {(e) => {handleAddToCart(index) }}>
                                                     Add to cart
                                                 </Button>
@@ -188,14 +192,17 @@ const PriceList = ({setCartItemCount}) => {
                         </TableBody>
                     </Table>
                 </TableContainer>
+               
                 <div className={classes.containerButton}>
+                { isUserAdmin() ? (
                     <div className={classes.addButton}>
                         <Button color="primary" variant="contained" onClick={() => {
                             setOpen(!open)
                         }}  >Add New List</Button>
                     </div>
-
-                    <FormControl>
+                ) : ''}
+                <div>
+                    <FormControl style={{minWidth: 130}}>
                         <InputLabel htmlFor="category">Select Category:</InputLabel>
                         <Select
                             label="Select Category"
@@ -213,7 +220,7 @@ const PriceList = ({setCartItemCount}) => {
                             {/* Add more categories as needed */}
                         </Select>
                     </FormControl>
-
+                </div>
 
                 </div>
             </div>

@@ -5,6 +5,7 @@ import Footer from "../footer/Footer";
 import RootRouter from "../router/RootRouter";
 import useAuth from "./hooks/useAuth";
 import { useState } from "react";
+import { isUserAdmin } from "../helper/authService";
 
 const Layout = () => {
     const classes = styles();
@@ -14,9 +15,9 @@ const Layout = () => {
     const [cartItemCount , setCartItemCount]  = useState(0);
     return (
         <Box>
-            <Header  onLogout={handleLogout} isAuthenticated={isAuthenticated} cartItemCount={cartItemCount}/>
+            <Header  onLogout={handleLogout} setCartItemCount = {setCartItemCount} isAuthenticated={isAuthenticated} cartItemCount={cartItemCount}/>
             <Container maxWidth={false} className= {classes.container} >
-                <RootRouter isAuthenticated={isAuthenticated} onLogin={handleLogin}  cartItemCount={cartItemCount} setCartItemCount = {setCartItemCount}/>
+                <RootRouter isAuthenticated={isAuthenticated} onLogin={handleLogin}  cartItemCount={cartItemCount} setCartItemCount = {setCartItemCount} isUserAdmin = {isUserAdmin}/>
             </Container>
             <Footer/>
         </Box>

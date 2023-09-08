@@ -5,6 +5,7 @@ import {editPriceList , getPriceDetails} from "./service/priceListService";
 import PriceList from "./PriceList";
 import {when} from "jest-when"
 import { Button } from "@material-ui/core";
+import { isUserAdmin } from "../helper/authService";
 
 jest.mock("./service/priceListService", () => ({
     editPriceList : jest.fn(),
@@ -15,7 +16,7 @@ jest.mock("./service/priceListService", () => ({
 describe("Basic Rendering of EditPricelistModal" ,() => {
     const open = true;
     const onClose = jest.fn();
-
+    const isUserAdmin = jest.fn();
     const initialData = {
         productName : "Apple",
         category : "Fruit" , 
@@ -46,7 +47,8 @@ describe("Basic Rendering of EditPricelistModal" ,() => {
 
     it("should edit the priceList" , async() => {
         when(getPriceDetails).calledWith().mockReturnValue({data : [{id : 1 , productName : "Apple" , category : "Fruit" , unitPrice : 200}]});
-        const component = render(<PriceList/>);
+        when(isUserAdmin).calledWith().mockResolvedValue(true);
+        const component = render(<PriceList isUserAdmin={isUserAdmin}/>);
         
         await waitFor(() => {
         const buttonComponent = screen.getByText("Edit");

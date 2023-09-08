@@ -8,7 +8,6 @@ const Login = ({ isAuthenticated, onLogin }) => {
     const [username , setUserName] = useState('');
     const [password , setPassWord] = useState('');
 
-    const[isPasswordValid , setPasswordValid] = useState(false);
 
 
     const errorMessage = () => {
@@ -22,9 +21,7 @@ const Login = ({ isAuthenticated, onLogin }) => {
     };
 
     const handlePasswordChange = (e) => {
-        let typedPassword = e.target.value;
         
-        setPasswordValid(checkPasswordValidity(typedPassword));
         setPassWord(e.target.value);
         
     }
@@ -83,12 +80,21 @@ return(<div style={{textAlign:"center"}}>
 
         </TextField>
         <div style={{margin:"5px"}}> 
-        <Button color="primary" variant="contained" type = "submit"  disabled = {!isPasswordValid}>
+        <Button color="primary" variant="contained" type = "submit" >
             Submit
         </Button>
         </div>
         {errorMessage()}
      </form>
+     
+    < div >
+    <p>
+      New to Daily Needs?{" "}
+      <a href="/signUp">
+        Signup here
+      </a>
+    </p>
+  </div>
 </div>)
 }
 

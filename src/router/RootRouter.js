@@ -5,15 +5,17 @@ import Cart from "../cart/Cart";
 import Bill from "../bill/Bill";
 import Login from "../login/Login";
 import ProtectedRoute from "../login/ProtectedRoute";
-const RootRouter = ({isAuthenticated, onLogin , setCartItemCount ,cartItemCount}) => {
+import SignUp from "../signUp/SignUp";
+const RootRouter = ({isAuthenticated, onLogin , setCartItemCount ,cartItemCount , isUserAdmin}) => {
     return(
         <Router>
             <Routes>
             <Route path="/" exact  element = {<ProtectedRoute isAuthenticated={isAuthenticated}> <Home setCartItemCount = {setCartItemCount} ></Home></ProtectedRoute>}  />
             
             
+            <Route exact path = "/signUp" element = {<SignUp/>}/>
             
-            <Route exact path = "/priceList" element = {<ProtectedRoute isAuthenticated={isAuthenticated}> <PriceList setCartItemCount = {setCartItemCount} ></PriceList></ProtectedRoute>}/>
+            <Route exact path = "/priceList" element = {<ProtectedRoute isAuthenticated={isAuthenticated}> <PriceList setCartItemCount = {setCartItemCount} isUserAdmin={isUserAdmin}></PriceList></ProtectedRoute>}/>
 
             <Route exact path = "/login" element = {<Login isAuthenticated={isAuthenticated} onLogin={onLogin} />}/>
 
