@@ -63,3 +63,13 @@ fileignoreconfig:
 - filename: src/cart/service/cartService.spec.js
   checksum: b61fe1f6daf1c4b73fb8f7905a9a195c0a294f4adad99535f25cefa5503178ee
 version: ""
+
+
+fileignoreconfig:
+- filename: src/signUp/SignUp.spec.js
+  checksum: b9a49ce63545105899d7a09a6a38f2cdda3088acd53bc3932b8685228540ccb1
+- filename: src/signUp/SignUp.js
+  checksum: f4f9e189afe365ce33f1b7aa984c383540530aea1fc2d1421816333862dcb98b
+- filename: src/bill/Bill.spec.js
+  checksum: 61ddff62bd828a6d4644acf2dafe2fdea411981f3393c495d3af50935c35deff
+version: ""

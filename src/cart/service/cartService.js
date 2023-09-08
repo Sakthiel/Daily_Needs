@@ -1,4 +1,5 @@
 import apiService from "../../helper/apiService";
+import { getUserName } from "../../helper/authService";
 
 export default {
     putCartItem: async(payload)=>{
@@ -8,7 +9,8 @@ export default {
     },
 
     getCartItems: async() => {
-        const response = await apiService.get('carts');
+        const userName = getUserName();
+        const response = await apiService.get(`carts/${userName}`);
         return response;
     }
 ,
